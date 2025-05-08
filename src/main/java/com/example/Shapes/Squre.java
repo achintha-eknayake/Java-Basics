@@ -1,6 +1,6 @@
 package com.example.Shapes;
 
-public class Squre {
+public class Squre extends Shape {
 
     private double length;
 
@@ -8,10 +8,12 @@ public class Squre {
         this.length = lenght;
     }
 
+    @Override
     public double getArea() {
         return length * length;
     }
 
+    @Override
     public double getPerimeter() {
         return 2 * length;
     }

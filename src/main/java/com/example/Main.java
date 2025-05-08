@@ -14,7 +14,7 @@ public class Main {
     public static double inputValidate(Scanner scanner, String caption){
         while(true){
             try{
-                System.out.println(caption);
+                System.out.print(caption);
                 double input = scanner.nextDouble();
                 if (input <= 0 ){
                     throw new InputMismatchException(); // if the number is invalid, throws input mismatch exception
@@ -32,7 +32,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Select a Shape \n " +
+        System.out.println("\nSelect a Shape \n " +
                 "\t 1.Rectangle \n" +
                 "\t 2.Squre \n" +
                 "\t 3.Circle ");

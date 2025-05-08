@@ -1,17 +1,63 @@
 package com.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import com.example.Shapes.Circle;
+import com.example.Shapes.Rectangle;
+import com.example.Shapes.Squre;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+
+    // Method that validates parameters of shapes
+    // If parameter is invalid asks again for correct input
+    public static double inputValidate(Scanner scanner, String caption){
+        while(true){
+            try{
+                System.out.println(caption);
+                double input = scanner.nextDouble();
+                if (input <= 0 ){
+                    throw new InputMismatchException(); // if the number is invalid, throws input mismatch exception
+                }
+                return input;
+
+            }catch(InputMismatchException e){
+                System.err.println("Enter a valid number");
+                scanner.nextLine(); // clear invalid input
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Select a Shape \n " +
+                "\t 1.Rectangle \n" +
+                "\t 2.Squre \n" +
+                "\t 3.Circle ");
+        String shape = scanner.nextLine().toLowerCase();
+
+        // switchcase to process different shapes
+        switch (shape) {
+            case "rectangle":
+                double width = inputValidate(scanner,"Enter the width of the rectangle :");
+                double height = inputValidate(scanner,"Enter the height of the rectangle :");
+                Rectangle rectangle = new Rectangle(width, height);
+                System.out.println(rectangle);
+                break;
+            case "squre":
+                double length = inputValidate(scanner,"Enter the length of the square :");
+                Squre squre = new Squre(length);
+                System.out.println(squre);
+                break;
+            case "circle":
+                double radius = inputValidate(scanner,"Enter the radius of the circle :");
+                Circle circle = new Circle(radius);
+                System.out.println(circle);
+                break;
+            default: // if entered shape doesn't match any of existing shapes returns message
+                System.out.println("Invalid input");
         }
     }
 }
